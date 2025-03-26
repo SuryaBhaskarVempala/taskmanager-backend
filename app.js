@@ -32,9 +32,9 @@ const logger = winston.createLogger({
 // Connect to the database
 connect(connectionString);
 
-// Setup CORS - Allow requests from Netlify (or other URLs if needed)
+// Setup CORS - Allow requests from any origin (for debugging)
 app.use(cors({
-  origin: '*',  // Any  URL (Frontend)
+  origin: '*',  // Allow all origins (replace '*' with a specific domain in production)
   methods: 'GET,POST,PUT,DELETE',  // Allow specific methods
   credentials: true,  // Allow credentials if you're using cookies or authentication tokens
 }));
