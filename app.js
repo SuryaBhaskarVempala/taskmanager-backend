@@ -34,10 +34,14 @@ connect(connectionString);
 
 // Setup CORS - Allow requests from any origin (for debugging)
 app.use(cors({
-  origin: '*',  // Allow all origins (replace '*' with a specific domain in production)
+  origin: '*',  // Allow all origins (replace '*' with a specific domain in production, e.g., 'https://taskmanager-frontend-dev.netlify.app')
   methods: 'GET,POST,PUT,DELETE',  // Allow specific methods
+  allowedHeaders: 'Content-Type,Authorization',  // Allow specific headers
   credentials: true,  // Allow credentials if you're using cookies or authentication tokens
 }));
+
+// Handling preflight requests (OPTIONS)
+app.options('*', cors());  // Handles preflight requests for all routes
 
 app.use(express.json());
 
