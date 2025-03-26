@@ -34,7 +34,7 @@ connect(connectionString);
 
 // Setup CORS - Allow requests from Netlify (or other URLs if needed)
 app.use(cors({
-  origin: 'https://taskmanager-frontend-dev.netlify.app',  // Your Netlify URL (Frontend)
+  origin: 'https://taskmanager-frontend-dev.netlify.app/',  // Your Netlify URL (Frontend)
   methods: 'GET,POST,PUT,DELETE',  // Allow specific methods
   credentials: true,  // Allow credentials if you're using cookies or authentication tokens
 }));
