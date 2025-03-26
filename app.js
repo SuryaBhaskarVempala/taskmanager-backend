@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const connect = require('./connection/DB');
-const cors = require('cors');
+const cors = require('cors');  // Only declare this once
 const User = require('./model/User');
 const Task = require('./model/Task');
 const mongoose = require('mongoose');
@@ -32,16 +32,14 @@ const logger = winston.createLogger({
 // Connect to the database
 connect(connectionString);
 
-
-app.use(express.json());
-app.use(cors());
-
-const cors = require('cors');
+// Setup CORS - Allow requests from Netlify (or other URLs if needed)
 app.use(cors({
-  origin: 'https://taskmanager-frontend-dev.netlify.app/', // Replace with your Netlify URL
-  methods: 'GET,POST,PUT,DELETE',
+  origin: 'https://taskmanager-frontend-dev.netlify.app',  // Your Netlify URL (Frontend)
+  methods: 'GET,POST,PUT,DELETE',  // Allow specific methods
+  credentials: true,  // Allow credentials if you're using cookies or authentication tokens
 }));
 
+app.use(express.json());
 
 // Signup Route
 app.post('/signup', async (req, res) => {
@@ -192,5 +190,5 @@ app.get('/', (req, res) => {
 
 // Start Server
 app.listen(port, () => {
-    logger.info("Server started on port "+port);
+    logger.info("Server started on port " + port);
 });
